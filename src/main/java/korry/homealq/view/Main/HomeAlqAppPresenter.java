@@ -10,6 +10,6 @@ public class HomeAlqAppPresenter implements HomeAlqContract.Presenter {
 
     @Override
     public void onButtonClick() {
-        view.setLabelText("¡Eres una pedazo de Puta!");
+        view.setLabelText("¡Eres un pedazo de crack!");
     }
 }
