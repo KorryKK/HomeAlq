@@ -3,9 +3,7 @@ module korry.homealq {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
-    requires eu.hansolo.tilesfx;
 
     // OPENS
     opens korry.homealq to javafx.fxml;
