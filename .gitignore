@@ -1,3 +1,9 @@
 target/
 .idea/
 dependency-reduced-pom.xml
+*.db
+*.sqlite
+*.sqlite3
+*.iml
+out/
+.DS_Store
