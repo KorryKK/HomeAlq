@@ -25,7 +25,6 @@ public class HomeAlqApp extends Application{
         assert controller != null;
         controller.setTitle(Titulo.HomeAlqApp);
         controller.setPresenter(new HomeAlqAppPresenter(controller));
-        stage.setTitle("HomeAlq");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Imagen.Logo128.getImg()))));
         stage.setMaximized(true);
         stage.show();
