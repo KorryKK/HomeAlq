@@ -4,6 +4,7 @@ module korry.homealq {
 
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
+    requires java.sql;
 
     // OPENS
     opens korry.homealq to javafx.fxml;
