@@ -3,6 +3,7 @@ package korry.homealq;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import korry.homealq.util.database.Database;
 import korry.homealq.util.enums.Imagen;
 import korry.homealq.util.enums.Scene;
 import korry.homealq.util.enums.Titulo;
@@ -10,6 +11,8 @@ import korry.homealq.util.navegator.Navegador;
 import korry.homealq.view.Main.HomeAlqAppController;
 import korry.homealq.view.Main.HomeAlqAppPresenter;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class HomeAlqApp extends Application{
@@ -18,6 +21,7 @@ public class HomeAlqApp extends Application{
 
     @Override
     public void start(Stage stage){
+
 
         navegador = new Navegador(stage);
 
