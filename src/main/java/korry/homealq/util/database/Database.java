@@ -35,7 +35,7 @@ public class Database {
     public static Connection conectar() throws SQLException {
 
         if (HOST == null || USER == null ||
-                PASSWORD == null || DATABASE == null) {
+                PASSWORD == null || DATABASE == null || PORT == null) {
             throw new IllegalStateException(
                     "Faltan variables de entorno para MySQL."
             );
