@@ -6,27 +6,48 @@ import java.sql.SQLException;
 
 public class Database {
 
+    private static class Esquemas {
+        //language=MySQL
+        private final String tablaHabitacion = """
+                CREATE TABLE IF NOT EXISTS HABITACION (
+                    ID INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                    NUMERO INTEGER NOT NULL UNIQUE
+                );""";
 
+        //language=MySQL
+        private final String tablaPersona = """
+                CREATE TABLE IF NOT EXISTS PERSONA (
+                    ID INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                    NOMBRE VARCHAR(40) NOT NULL,
+                    APELLIDOS VARCHAR(60) NOT NULL,
+                    DNI VARCHAR(20) NOT NULL UNIQUE,
+                    TELEFONO INTEGER NOT NULL
+                );""";
+    }
 
-    private final static String host = System.getenv("DB_HOST");
-    private final static String user = System.getenv("DB_USER");
-    private final static String password = System.getenv("DB_PASSWORD");
-    private final static String database = System.getenv("DB_NAME");
-    private final static String port = System.getenv("DB_PORT");
-    private final static String URL = "jdbc:mysql://" + host + ":" + port + "/" + database + "?sslMode=REQUIRED";
+    private final static String HOST = System.getenv("DB_HOST");
+    private final static String USER = System.getenv("DB_USER");
+    private final static String PASSWORD = System.getenv("DB_PASSWORD");
+    private final static String DATABASE = System.getenv("DB_NAME");
+    private final static String PORT = System.getenv("DB_PORT");
+    private final static String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?sslMode=REQUIRED";
 
-    public static Connection conectar() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(URL, user, password);
-            IO.println("¡Conectado correctamente!");
-        } catch (SQLException e) {
-            System.err.println("Error al conectar a SQLite DB: " + e.getMessage());
+    public static Connection conectar() throws SQLException {
+
+        if (HOST == null || USER == null ||
+                PASSWORD == null || DATABASE == null) {
+            throw new IllegalStateException(
+                    "Faltan variables de entorno para MySQL."
+            );
         }
-        return conn;
+
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public static void inicializar() {
-
+    public static String getHost() {
+        return HOST;
     }
+
+    
+    //public static void inicializar() {}
 }
