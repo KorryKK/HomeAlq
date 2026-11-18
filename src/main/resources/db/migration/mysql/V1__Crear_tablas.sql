@@ -11,8 +11,7 @@
 -- =====================================================
 
 CREATE TABLE habitacion (
-    id INT AUTO_INCREMENT PRIMARY KEY
-    ,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     numero INT NOT NULL,
 
     CONSTRAINT uq_habitacion_numero
@@ -29,7 +28,7 @@ CREATE TABLE persona (
     nombre VARCHAR(40) NOT NULL,
     apellidos VARCHAR(60) NOT NULL,
     dni VARCHAR(20) NOT NULL,
-    telefono VARCHAR(20),
+    telefono VARCHAR(20) NOT NULL,
 
     CONSTRAINT uq_persona_dni
         UNIQUE (dni)
@@ -160,7 +159,7 @@ CREATE TABLE reparto (
     CONSTRAINT fk_reparto_factura
         FOREIGN KEY (factura_id)
         REFERENCES factura(id)
-        ON DELETE CASCADE
+        ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
     CONSTRAINT fk_reparto_contrato

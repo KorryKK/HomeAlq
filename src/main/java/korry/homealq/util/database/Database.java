@@ -6,25 +6,6 @@ import java.sql.SQLException;
 
 public class Database {
 
-    private static class Esquemas {
-        //language=MySQL
-        private final String tablaHabitacion = """
-                CREATE TABLE IF NOT EXISTS HABITACION (
-                    ID INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-                    NUMERO INTEGER NOT NULL UNIQUE
-                );""";
-
-        //language=MySQL
-        private final String tablaPersona = """
-                CREATE TABLE IF NOT EXISTS PERSONA (
-                    ID INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY,
-                    NOMBRE VARCHAR(40) NOT NULL,
-                    APELLIDOS VARCHAR(60) NOT NULL,
-                    DNI VARCHAR(20) NOT NULL UNIQUE,
-                    TELEFONO INTEGER NOT NULL
-                );""";
-    }
-
     private final static String HOST = System.getenv("DB_HOST");
     private final static String USER = System.getenv("DB_USER");
     private final static String PASSWORD = System.getenv("DB_PASSWORD");
@@ -36,18 +17,25 @@ public class Database {
 
         if (HOST == null || USER == null ||
                 PASSWORD == null || DATABASE == null || PORT == null) {
-            throw new IllegalStateException(
-                    "Faltan variables de entorno para MySQL."
-            );
+
+            String mensaje = "Faltan las siguientes variables: ";
+            if (HOST == null)
+                mensaje = mensaje + "\nHost";
+            if (USER == null) {
+                mensaje = mensaje + "\nUser";
+            }
+            if (PASSWORD == null) {
+                mensaje = mensaje + "\nPassword";
+            }
+            if (DATABASE == null) {
+                mensaje = mensaje + "\nDatabase";
+            }
+            if (PORT == null) {
+                mensaje = mensaje + "\nPort";
+            }
+            throw new IllegalStateException(mensaje);
         }
 
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-
-    public static String getHost() {
-        return HOST;
-    }
-
-    
-    //public static void inicializar() {}
 }
