@@ -57,6 +57,15 @@
             <version>3.54.1.0</version>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+            Estructuras para bases de datos-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>13.12.2</version>
+            <scope>compile</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
