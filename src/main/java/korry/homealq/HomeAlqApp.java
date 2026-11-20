@@ -33,12 +33,13 @@ public class HomeAlqApp extends Application{
         navegador = new Navegador(stage);
 
         HomeAlqAppController controller = navegador.goTo(Scene.HomeAlqApp);
-        assert controller != null;
-        controller.setTitle(Titulo.HomeAlqApp);
-        controller.setPresenter(new HomeAlqAppPresenter(controller));
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Imagen.Logo128.getImg()))));
-        stage.setMaximized(true);
-        stage.show();
+        if (controller != null) {
+            controller.setTitle(Titulo.HomeAlqApp);
+            controller.setPresenter(new HomeAlqAppPresenter(controller));
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Imagen.Logo128.getImg()))));
+            stage.setMaximized(true);
+            stage.show();
+        }
     }
 
     private void mostrarErrorYSalir(Exception e) {

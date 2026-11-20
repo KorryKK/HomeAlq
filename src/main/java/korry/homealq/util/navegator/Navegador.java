@@ -18,6 +18,7 @@ public record Navegador(Stage stage) {
      * Constructor del navegador
      */
     public Navegador {
+        Objects.requireNonNull(stage, "El Stage no puede ser nulo");
     }
 
     /**
@@ -57,6 +58,15 @@ public record Navegador(Stage stage) {
 
             Parent root = loader.load();
 
+            // Obtenemos el controlador
+            T controller = loader.getController();
+
+            // Comprobamos que existe
+            if (controller == null) {
+                System.err.println("❌ ERROR: El archivo FXML no tiene un controlador asociado: " + recurso);
+                return null;
+            }
+
             // 2. Obtenemos la escena actual de la ventana
             javafx.scene.Scene escenaActual = stage.getScene();
 
@@ -69,10 +79,11 @@ public record Navegador(Stage stage) {
                 // Esto mantiene el estado de la ventana (maximizado) intacto.
                 escenaActual.setRoot(root);
             }
-            return loader.getController();
+            return controller;
 
-        } catch (IOException e) {
-            System.err.println("❌ Error al cargar la vista " + recurso + ": " + e.getMessage());
+        } catch (IOException | RuntimeException e) {
+            System.err.println("❌ Error al cargar la vista " + recurso);
+            e.printStackTrace(System.err);
             return null;
         }
     }
@@ -90,28 +101,35 @@ public record Navegador(Stage stage) {
         if (recurso == null) {
             System.err.println("❌ ERROR: No se encuentra el archivo: " + fxmlArchivo.getFxml());
             System.err.println("Revisa si las mayúsculas coinciden exactamente.");
-        } else {
-            return getModalController(recurso, title);
+            return null;
         }
-
-        return null;
+        return getModalController(recurso, title);
     }
 
     /**
      * Método para cargar la vista pasada por parámetro - como modal
      *
-     * @param resource URL del recurso a cargar
+     * @param recurso URL del recurso a cargar
      * @param title    Título de la ventana modal
      * @return - Controlador cargado
      * - null si hubo algún error
      */
-    private <T> T getModalController(URL resource, String title) {
+    private <T> T getModalController(URL recurso, String title) {
         try {
 
-            FXMLLoader loader = new FXMLLoader(resource);
+            FXMLLoader loader = new FXMLLoader(recurso);
             setControllerFactory(loader);
 
             Parent root = loader.load();
+
+            // Obtenemos el controlador
+            T controller = loader.getController();
+
+            // Comprobamos que existe
+            if (controller == null) {
+                System.err.println("❌ ERROR: El archivo FXML no tiene un controlador asociado: " + recurso);
+                return null;
+            }
 
             Stage modal = new Stage();
             modal.initOwner(stage); // El stage principal
@@ -122,9 +140,9 @@ public record Navegador(Stage stage) {
             modal.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Imagen.Logo128.getImg()))));
             modal.show();
 
-            return loader.getController();
-        } catch (IOException e) {
-            System.err.println("❌ Error al cargar la vista " + resource.getPath() + ": " + e.getMessage());
+            return controller;
+        } catch (IOException | RuntimeException e) {
+            System.err.println("❌ Error al cargar la vista " + recurso.getPath() + ": " + e.getMessage());
             return null;
         }
     }

@@ -8,6 +8,9 @@ module korry.homealq {
     requires flyway.core;
     requires java.desktop;
 
+    // OPENS DE FLYWAY
+    opens db.migration.sqlite;
+
     // OPENS
     opens korry.homealq to javafx.fxml;
     opens korry.homealq.view.Main to javafx.fxml;

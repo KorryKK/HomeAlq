@@ -12,14 +12,6 @@ import java.sql.SQLException;
 
 public final class Database {
 
-    private final static String HOST = System.getenv("DB_HOST");
-    private final static String USER = System.getenv("DB_USER");
-    private final static String PASSWORD = System.getenv("DB_PASSWORD");
-    private final static String DATABASE = System.getenv("DB_NAME");
-    private final static String PORT = System.getenv("DB_PORT");
-    private final static String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE + "?sslMode=REQUIRED";
-
-
     private static ConfiguracionDB configuracion;
 
     private Database() {}
@@ -51,7 +43,7 @@ public final class Database {
 
         Flyway.configure()
                 .dataSource(config.url(), config.usuario(), config.contrasena())
-                .locations("classpath:/db/migration/" + config.motor().getCarpetaMigraciones())
+                .locations("classpath:db/migration/" + config.motor().getCarpetaMigraciones())
                 .load()
                 .migrate();
     }
