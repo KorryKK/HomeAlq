@@ -1,8 +1,8 @@
 package korry.homealq.base;
 
 import korry.homealq.util.enums.Titulo;
-import korry.homealq.util.navegator.Navegable;
-import korry.homealq.util.navegator.Navegador;
+import korry.homealq.util.navegador.Navegable;
+import korry.homealq.util.navegador.Navegador;
 
 public class ViewController implements Navegable, Titleable {
     protected Navegador navegador;

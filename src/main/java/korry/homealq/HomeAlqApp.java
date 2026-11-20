@@ -9,9 +9,9 @@ import korry.homealq.util.database.Database;
 import korry.homealq.util.enums.Imagen;
 import korry.homealq.util.enums.Scene;
 import korry.homealq.util.enums.Titulo;
-import korry.homealq.util.navegator.Navegador;
-import korry.homealq.view.Main.HomeAlqAppController;
-import korry.homealq.view.Main.HomeAlqAppPresenter;
+import korry.homealq.util.navegador.Navegador;
+import korry.homealq.view.main.HomeAlqAppController;
+import korry.homealq.view.main.HomeAlqAppPresenter;
 
 import java.util.Objects;
 

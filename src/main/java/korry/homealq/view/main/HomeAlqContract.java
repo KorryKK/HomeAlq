@@ -1,4 +1,4 @@
-package korry.homealq.view.Main;
+package korry.homealq.view.main;
 
 public interface HomeAlqContract {
     interface View {

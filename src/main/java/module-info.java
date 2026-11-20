@@ -10,10 +10,11 @@ module korry.homealq {
 
     // OPENS DE FLYWAY
     opens db.migration.sqlite;
+    opens db.migration.mysql;
 
     // OPENS
     opens korry.homealq to javafx.fxml;
-    opens korry.homealq.view.Main to javafx.fxml;
+    opens korry.homealq.view.main to javafx.fxml;
 
     // EXPORTS
     exports korry.homealq;

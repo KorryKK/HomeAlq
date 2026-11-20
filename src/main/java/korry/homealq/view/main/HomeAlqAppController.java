@@ -1,4 +1,4 @@
-package korry.homealq.view.Main;
+package korry.homealq.view.main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

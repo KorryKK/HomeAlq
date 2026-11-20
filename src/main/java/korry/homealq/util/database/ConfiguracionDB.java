@@ -30,7 +30,7 @@ public record ConfiguracionDB(MotorDB motor, Path archivo, String host, int puer
     public static ConfiguracionDB mysqlDesdeEntorno() {
         List<String> faltan = new ArrayList<>();
         String host = leerVariable("DB_HOST", faltan);
-        String puerto = leerVariable("DB_PUERTO", faltan);
+        String puerto = leerVariable("DB_PORT", faltan);
         String baseDatos = leerVariable("DB_NAME", faltan);
         String usuario = leerVariable("DB_USER", faltan);
         String contrasena = leerVariable("DB_PASSWORD", faltan);

@@ -1,4 +1,4 @@
-package korry.homealq.util.navegator;
+package korry.homealq.util.navegador;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
