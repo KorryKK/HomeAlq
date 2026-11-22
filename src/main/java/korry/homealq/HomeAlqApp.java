@@ -39,6 +39,9 @@ public class HomeAlqApp extends Application{
             stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(Imagen.Logo128.getImg()))));
             stage.setMaximized(true);
             stage.show();
+        } else {
+            System.err.println("ERROR CON LOS CONTROLADORES");
+            Platform.exit();
         }
     }
 

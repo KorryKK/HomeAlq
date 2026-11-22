@@ -15,7 +15,7 @@ public class ViewController implements Navegable, Titleable {
     @Override
     public void setTitle(Titulo title) {
         if (navegador == null) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("El navegador es nulo.");
         } else {
             navegador.stage().setTitle(title.getTitle());
         }

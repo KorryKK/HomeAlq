@@ -50,7 +50,7 @@ public record ConfiguracionDB(MotorDB motor, Path archivo, String host, int puer
     // La que usa la app ahora: SQLite, salvo que la variable DB_MOTOR valga MYSQL.
     public static ConfiguracionDB porDefecto() {
         String motor = System.getenv("DB_MOTOR");
-        if (motor != null && motor.equals("MYSQL")) {
+        if (motor != null && motor.equalsIgnoreCase("mysql")) {
             return mysqlDesdeEntorno();
         }
 
@@ -78,10 +78,10 @@ public record ConfiguracionDB(MotorDB motor, Path archivo, String host, int puer
         String appData = System.getenv("APPDATA");
 
         if (appData != null && !appData.isEmpty()) {
-            return Path.of(appData, "homealq");
+            return Path.of(appData, "HomeAlq");
         }
 
-        return Path.of(System.getProperty("user.home"), "homealq");
+        return Path.of(System.getProperty("user.home"), "HomeAlq");
     }
 
     private static String leerVariable(String nombre, List<String> faltan) {

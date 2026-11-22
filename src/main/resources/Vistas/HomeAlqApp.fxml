@@ -6,9 +6,6 @@
 
 
 <VBox alignment="CENTER" spacing="50.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="korry.homealq.view.main.HomeAlqAppController">
-   <children>
-   
-          <Label fx:id="lblAlq">Cara huevo</Label>
-       <Button onAction="#onButton" text="Pulsa" />
-   </children>
+    <Label fx:id="lblAlq">Cara huevo</Label>
+    <Button onAction="#onButton" text="Pulsa" />
 </VBox>
