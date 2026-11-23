@@ -23,7 +23,7 @@ import java.util.TreeSet;
  * <p>
  * Uso (ejecutar el main):
  * <ul>
- *   <li>sin argumentos: revisa SQLite y MySQL;</li>
+ *   <li>Sin argumentos: revisa SQLite y MySQL;</li>
  *   <li>"sqlite" o "mysql": revisa solo esa;</li>
  *   <li>"sqlite C:\ruta\archivo.db": revisa otro archivo SQLite (por ejemplo, una copia).</li>
  * </ul>
@@ -146,9 +146,9 @@ public final class DiagnosticoBD {
             paso(informe, "MySQL", () -> comprobarMysql(conexion, informe));
         }
 
-        Set<String> tablas = new TreeSet<>();
+        Set<String> tablas;
         try {
-            tablas.addAll(nombresDeTablas(motor, conexion));
+            tablas = new TreeSet<>(nombresDeTablas(motor, conexion));
         } catch (SQLException e) {
             informe.fallo("No se pudieron leer las tablas: " + e.getMessage());
             return;
@@ -186,7 +186,7 @@ public final class DiagnosticoBD {
     }
 
     private static void comprobarMysql(Connection c, Informe informe) throws SQLException {
-        informe.info("Base de datos y usuario: " + filas(c, "SELECT DATABASE(), CURRENT_USER()").get(0));
+        informe.info("Base de datos y usuario: " + filas(c, "SELECT DATABASE(), CURRENT_USER()").getFirst());
 
         String cifrado = texto(c, "SHOW SESSION STATUS LIKE 'Ssl_cipher'", 2);
         if (cifrado == null || cifrado.isBlank()) {
@@ -367,7 +367,7 @@ public final class DiagnosticoBD {
         }
     }
 
-    // Las primeras 10 filas, cada una con sus columnas separadas por " /"
+    // Las primeras 10 filas, cada una con sus columnas separadas por "/"
     private static List<String> filas(Connection c, String sql) throws SQLException {
         List<String> filas = new ArrayList<>();
         try (Statement sentencia = c.createStatement(); ResultSet r = sentencia.executeQuery(sql)) {

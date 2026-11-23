@@ -14,7 +14,7 @@ module korry.homealq {
     requires flyway.mysql;
 
     // JAVA
-    requires java.desktop;
+    //requires java.desktop;
 
     // OPENS DE FLYWAY
     opens db.migration.sqlite;
