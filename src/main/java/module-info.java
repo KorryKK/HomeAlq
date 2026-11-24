@@ -24,6 +24,9 @@ module korry.homealq {
     opens korry.homealq to javafx.fxml;
     opens korry.homealq.view.main to javafx.fxml;
 
+    // OPENS JUNIT
+    opens korry.homealq.calculo to org.junit.platform.commons;
+
     // EXPORTS
     exports korry.homealq;
 }
